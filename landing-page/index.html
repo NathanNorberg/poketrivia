@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">PokeTrivia</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,27 +28,27 @@
           </ul>
           </div>
         </nav>
-    <main>
+    </header>
+    <main class="container-fluid">
       <div class="row mt-5">
         <div class="col mt-3">
           <h1>Welcome Back To The World of Pokemon!</h1>
         </div>
       </div>
-        <div class="row">
-          <div class="col">
+        <div class="row justify-content-center">
+          <div class="col-4">
             <p>Days remaining until release:</p>
           </div>
-
-            <div class ="col" id="count-down">
+            <div class ="col-4" id="count-down">
                 <p><p>
             </div>
         </div>
-      <div class="row">
+      <div class="row ml-3">
         <div class="col">
             <h2>Kanto Region</h2>
         </div>
       </div>
-      <div class="media">
+      <div class="row ml-3 media">
         <img class="align-self-center m-3" src="https://cdn.vox-cdn.com/thumbor/wf1XPOJ3jwulwqXyi-rR0zKeiXs=/0x0:2571x1818/920x0/filters:focal(0x0:2571x1818):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/11680589/Map_Art.png" alt="Map of Kanto Region">
         <div class="align-self-center media-body">
           <a href="../trivia-page/index2.html"class="btn btn-primary">Let's Go!</a>
@@ -56,7 +57,11 @@
 
     </main>
     <footer>
-      <p>This is a student project</p>
+      <div class="col bg-dark container-fluid">
+        <div class="row">
+          <p>This is a student project</p>
+        </div>
+      </div>
     </footer>
     <script src="landing-page.js">
 
