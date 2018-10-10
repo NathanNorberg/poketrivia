@@ -7,24 +7,24 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <ul class="nav nav-tabs ">
-            <li class="nav-item">
-              <a class="nav-link active" href="../landing-page/index.html">Home</a>
-            </li>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Home Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="../trivia-page/index2.html">Trivia</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../pokedex/index3.html">Pokedex</a>
             </li>
-          </ul>
-        </div>
-      </div>
     </header>
-    <main class="container-fluid">
+
+    <main>
       <div class="row">
         <div class="col">
           <h1>Welcome Back To The World of Pokemon!</h1>
@@ -34,9 +34,10 @@
           <div class="col">
             <p>Days remaining until release:</p>
           </div>
-          <div id="count-down">
-            <p><p>
-          </div>
+
+            <div class ="col" id="count-down">
+                <p><p>
+            </div>
         </div>
       <div class="row">
         <div class="col">
@@ -44,10 +45,9 @@
         </div>
       </div>
       <div class="media">
-        <img class="align-self-center m-5" src="https://cdn.vox-cdn.com/thumbor/wf1XPOJ3jwulwqXyi-rR0zKeiXs=/0x0:2571x1818/920x0/filters:focal(0x0:2571x1818):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/11680589/Map_Art.png" alt="Map of Kanto Region">
+        <img class="align-self-center m-3" src="https://cdn.vox-cdn.com/thumbor/wf1XPOJ3jwulwqXyi-rR0zKeiXs=/0x0:2571x1818/920x0/filters:focal(0x0:2571x1818):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/11680589/Map_Art.png" alt="Map of Kanto Region">
         <div class="align-self-center media-body">
-          <a href="../trivia-page/index2.html" class="mt-0">Lets get started!</a>
-
+          <a href="../trivia-page/index2.html"class="btn btn-primary">Let's Go!</a>
         </div>
       </div>
 
