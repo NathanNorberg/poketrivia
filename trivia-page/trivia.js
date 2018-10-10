@@ -11,7 +11,7 @@ let pokeBio;
 
 
 // for(let i = 0; i < 2; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(152))}`).then(results => {
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
   // let j = (Math.floor(Math.random()*(152)))
   console.log(results)
   // let res = results[i];
@@ -20,7 +20,7 @@ let pokeBio;
   spriteContainer.appendChild(spriteImage);
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.innerHTML = "It's " + results.data.name +"!";
+  randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row");
@@ -39,10 +39,10 @@ let pokeBio;
 });
 
 for(let i=0; i < 3; i++){
-axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(152))}`).then(results => {
+axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.innerHTML = "It's " + results.data.name +"!";
+  randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row");
