@@ -2,30 +2,47 @@ const pokedexURL = "https://pokeapi.co/api/v2/pokemon/";
 const answersContainer = document.querySelector('.answers-container');
 const spriteContainer = document.querySelector('.img1');
 const pokemonBio = document.querySelector('.pokemon-bio');
-
+const nextPokemonButton = document.querySelector('.next-pokemon');
+const numberCorrect = document.querySelector('.number-correct'), count = 0;
+const answers = document.querySelector('.answer');
 
 // let spriteImage;
 // let randomAnswer;
-let randomAnswerRow;
+// let randomAnswerRow;
 let pokeBio;
 
-
-// for(let i = 0; i < 2; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
+// let randomAnswer = document.createElement("p");
+//
+// nextPokemonButton.addEventListener("click", e=> {
+//   if(randomAnswer.textContent.length) {
+//     randomAnswer.textContent.length = 0;
+//     getPokemon()
+//   }else {
+//     console.log(randomAnswer.textContent)
+//     getPokemon()
+//   }
+// });
+//
+//
+//   function getPokemon() {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
   // let j = (Math.floor(Math.random()*(152)))
   console.log(results)
   // let res = results[i];
+  //
   let spriteImage = document.createElement("img");
   spriteImage.src = results.data.sprites.front_default;
   spriteContainer.appendChild(spriteImage);
 
   let randomAnswer = document.createElement("p");
+  randomAnswer.setAttribute("class", "answer correct")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
+
   let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row");
-  answersContainer.appendChild(randomAnswerRow);
+  randomAnswerRow.setAttribute("class", "row correct");
   randomAnswerRow.appendChild(randomAnswer);
+  answersContainer.appendChild(randomAnswerRow);
 
   let pokeBio = document.createElement('p');
   if(results.data.name === 'bulbasaur'){
@@ -41,12 +58,25 @@ let pokeBio;
 for(let i=0; i < 3; i++){
 axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
 
+
+
   let randomAnswer = document.createElement("p");
+  randomAnswer.setAttribute("class", "answer incorrect")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
   let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row");
+  randomAnswerRow.setAttribute("class", "row incorrect");
   answersContainer.appendChild(randomAnswerRow);
   randomAnswerRow.appendChild(randomAnswer);
 })
-};
+}
+// }
+// });
+
+// answers.onclick = function() {
+//   if(answers === '.correct') {
+//     count +=1;
+//     numberCorrect.innerHTML = count
+//   }
+//
+// }
