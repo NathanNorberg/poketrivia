@@ -3,47 +3,25 @@ const answersContainer = document.querySelector('.answers-container');
 const spriteContainer = document.querySelector('.img1');
 const pokemonBio = document.querySelector('.pokemon-bio');
 const nextPokemonButton = document.querySelector('.next-pokemon');
-// const numberCorrect = document.querySelector('.number-correct'), count = 0;
 const answers = document.querySelector('.answer');
-
-// let spriteImage;
-// let randomAnswer;
-// let randomAnswerRow;
+const visibility = document.querySelector('.visibility');
+const newP = document.createElement("p");
+newP.className = "row btn btn-success"
+let attempts =0;
+let correct=0;
+let randomAnswer;
 let pokeBio;
-
-// let randomAnswer = document.createElement("p");
-//
-// nextPokemonButton.addEventListener("click", e=> {
-//   if(randomAnswer.textContent.length) {
-//     randomAnswer.textContent.length = 0;
-//     getPokemon()
-//   }else {
-//     console.log(randomAnswer.textContent)
-//     getPokemon()
-//   }
-// });
-//
-//
-//   function getPokemon() {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
-  // let j = (Math.floor(Math.random()*(152)))
-  console.log(results)
-  // let res = results[i];
-  //
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
   let spriteImage = document.createElement("img");
   spriteImage.src = results.data.sprites.front_default;
   spriteContainer.appendChild(spriteImage);
-
   let randomAnswer = document.createElement("p");
   randomAnswer.setAttribute("class", "answer correct btn btn-secondary")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
-
-
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
   answersContainer.appendChild(randomAnswerRow);
-
   let pokeBio = document.createElement('p');
     if(results.data.name === 'bulbasaur'){
       pokeBio.innerHTML = 'Is a small, quadruped Pokémon that has blue-green skin with darker green patches. It has red eyes with white pupils and scleras. It also has pointed, ear-like structures on top of its head. Its snout is short and blunt, and it has a wide mouth. A pair of small, pointed teeth are visible in the upper jaw when its mouth is open. Each of its thick legs ends with three sharp claws. On its back is a green plant bulb, which is grown from a seed planted there at birth. The bulb provides it with energy through photosynthesis as well as from the nutrient-rich seeds contained within.';
@@ -349,21 +327,29 @@ let pokeBio;
         pokeBio.innerHTML = "Is a pink, bipedal Pokémon with mammalian features. Its snout is short and wide, and it has triangular ears and large, blue eyes. It has short arms with three-fingered paws, large hind legs and feet with oval markings on the soles, and a long, thin tail ending in an ovoid tip. Its fur is so fine and thin, it can only be seen under a microscope. This Pokémon is said to have the DNA of every single Pokémon contained within its body, and as such is able to learn any attack."
     }
   pokemonBio.appendChild(pokeBio);
-
+  for(let i=0; i < 3; i++){
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
+    let randomAnswer = document.createElement("p");
+    randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary")
+    randomAnswer.innerHTML = "It's a " + results.data.name +"!";
+    let randomAnswerRow = document.createElement("div");
+    randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
+    answersContainer.appendChild(randomAnswerRow);
+    randomAnswerRow.appendChild(randomAnswer);
+    answersContainer.addEventListener("click", e => {
+      if (event.target.className === "answer correct btn btn-secondary") {
+        correct++;
+        attempts++;
+        event.target.className = "answer correct btn btn-success"
+      }
+      else if(event.target.className === "answer incorrect btn btn-secondary"){
+        attempts++
+        event.target.className ="answer incorrect btn btn-danger"
+      }
+      console.log(correct, attempts)
+      newP.innerHTML = `Your accuracy is ${(correct/attempts).toFixed(2)*100}% `
+      visibility.appendChild(newP);
+    });
+  })
+}
 });
-
-for(let i=0; i < 3; i++){
-axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
-
-
-
-  let randomAnswer = document.createElement("p");
-  randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary")
-  randomAnswer.innerHTML = "It's a " + results.data.name +"!";
-
-  let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-  answersContainer.appendChild(randomAnswerRow);
-  randomAnswerRow.appendChild(randomAnswer);
-})
-};
