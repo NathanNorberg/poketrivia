@@ -9,7 +9,6 @@ for(let i=1; i <51; i++){
 };
 
 Promise.all(promiseArr).then((results)=>{
-  console.log(results)
   for(let i = 0; i<results.length; i++){
     let res = results[i];
     newDiv = document.createElement('div');
@@ -22,8 +21,8 @@ Promise.all(promiseArr).then((results)=>{
     let newDiv4 = document.createElement('div')
     newDiv4.setAttribute("class", "media")
     newDiv3.setAttribute("class", "media-body");
-    newDiv.setAttribute("class","row border border-dark d-flex justify-content-center mt-2");
-    newDiv2.setAttribute("class", "media");
+    newDiv.setAttribute("class","row border border-dark mt-2 w-50 mx-auto justify-content-center");
+    newDiv2.setAttribute("class", "media ");
     newImg.setAttribute("class", "align-self-center mr-3" );
     newImg2.setAttribute("class", "align-self-center ml-3");
     newH5.setAttribute("class", "mt-0");

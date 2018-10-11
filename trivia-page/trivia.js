@@ -350,14 +350,6 @@ let pokeBio;
     }
   pokemonBio.appendChild(pokeBio);
 
-  // const correctCount = document.getElementById("correctCount");
-  // const answerSelect = document.getElementById("answer");
-  // count = 0;
-  // answerSelect.onclick = function() {
-  //   count +=1;
-  //   correctCount.innerHTML = 'Correct answer: ' + count;
-
-
 });
 
 for(let i=0; i < 3; i++){
@@ -373,28 +365,5 @@ axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.flo
   randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
   answersContainer.appendChild(randomAnswerRow);
   randomAnswerRow.appendChild(randomAnswer);
-
-  // const incorrectCount = document.getElementById("answerCount");
-  // const answerSelect2 = document.getElementById("incorrect");
-  // secondCount = 0;
-  // answerSelect2.onclick = function() {
-  //   count +=1;
-  //   answerCount.innerHTML = 'Incorrect answers: ' + secondCount;
-
-
-
 })
-}
-//
-// const incorrectCount = document.getElementById("answerCount");
-// const answerSelect2 = document.getElementById("incorrect");
-// const correctCount = document.getElementById("correctCount");
-// const answerSelect = document.getElementById("answer");
-
-
-
-
-
-
-// }
-// });
+};
