@@ -6,6 +6,8 @@ const nextPokemonButton = document.querySelector('.next-pokemon');
 const answers = document.querySelector('.answer');
 const visibility = document.querySelector('.visibility');
 const newP = document.createElement("p");
+const resetButton = document.querySelector('.reset');
+
 newP.className = "row btn btn-success"
 let attempts =0;
 let correct=0;
@@ -336,6 +338,11 @@ let pokeBio;
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     answersContainer.appendChild(randomAnswerRow);
     randomAnswerRow.appendChild(randomAnswer);
+    resetButton.addEventListener("click", e => {
+      attempts = 0;
+      correct = 0;
+      newP.innerHTML = `Your accuracy has been reset `
+    });
     answersContainer.addEventListener("click", e => {
       if (event.target.className === "answer correct btn btn-secondary") {
         correct++;
@@ -347,9 +354,14 @@ let pokeBio;
         event.target.className ="answer incorrect btn btn-danger"
       }
       console.log(correct, attempts)
-      newP.innerHTML = `Your accuracy is ${(correct/attempts).toFixed(2)*100}% `
+      let percentage = correct/attempts;
+      newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
   })
 }
 });
+// resetButton.addEventListener("click", e => {
+//   attempts = 0;
+//   correct = 0;
+// })
