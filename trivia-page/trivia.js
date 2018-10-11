@@ -13,12 +13,16 @@ let attempts =0;
 let correct=0;
 let randomAnswer;
 let pokeBio;
+
+
+
   axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
   let spriteImage = document.createElement("img");
   spriteImage.src = results.data.sprites.front_default;
   spriteContainer.appendChild(spriteImage);
   let randomAnswer = document.createElement("p");
   randomAnswer.setAttribute("class", "answer correct btn btn-secondary")
+  randomAnswer.setAttribute("onclick", "event.preventDefault()");
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
@@ -332,7 +336,8 @@ let pokeBio;
   for(let i=0; i < 3; i++){
   axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
     let randomAnswer = document.createElement("p");
-    randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary")
+    randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
+    randomAnswer.setAttribute("onclick", "event.preventDefault()");
     randomAnswer.innerHTML = "It's a " + results.data.name +"!";
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
