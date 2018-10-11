@@ -35,12 +35,12 @@ let pokeBio;
   spriteContainer.appendChild(spriteImage);
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.setAttribute("class", "answer correct")
+  randomAnswer.setAttribute("class", "answer correct btn btn-secondary")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
 
   let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row correct");
+  randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
   answersContainer.appendChild(randomAnswerRow);
 
@@ -359,11 +359,11 @@ axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.flo
 
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.setAttribute("class", "answer incorrect")
+  randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
   let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row incorrect");
+  randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
   answersContainer.appendChild(randomAnswerRow);
   randomAnswerRow.appendChild(randomAnswer);
 })
