@@ -3,7 +3,7 @@ const answersContainer = document.querySelector('.answers-container');
 const spriteContainer = document.querySelector('.img1');
 const pokemonBio = document.querySelector('.pokemon-bio');
 const nextPokemonButton = document.querySelector('.next-pokemon');
-const numberCorrect = document.querySelector('.number-correct'), count = 0;
+// const numberCorrect = document.querySelector('.number-correct'), count = 0;
 const answers = document.querySelector('.answer');
 
 // let spriteImage;
@@ -35,12 +35,13 @@ let pokeBio;
   spriteContainer.appendChild(spriteImage);
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.setAttribute("class", "answer correct")
+  randomAnswer.setAttribute("id", "answer correct")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
 
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row correct");
+  randomAnswerRow.setAttribute("id", "answer");
   randomAnswerRow.appendChild(randomAnswer);
   answersContainer.appendChild(randomAnswerRow);
 
@@ -350,6 +351,13 @@ let pokeBio;
     }
   pokemonBio.appendChild(pokeBio);
 
+  // const correctCount = document.getElementById("correctCount");
+  // const answerSelect = document.getElementById("answer");
+  // count = 0;
+  // answerSelect.onclick = function() {
+  //   count +=1;
+  //   correctCount.innerHTML = 'Correct answer: ' + count;
+
 
 });
 
@@ -359,22 +367,36 @@ axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.flo
 
 
   let randomAnswer = document.createElement("p");
-  randomAnswer.setAttribute("class", "answer incorrect")
+  randomAnswer.setAttribute("id", "answer incorrect")
   randomAnswer.innerHTML = "It's a " + results.data.name +"!";
 
   let randomAnswerRow = document.createElement("div");
-  randomAnswerRow.setAttribute("class", "row incorrect");
+  randomAnswerRow.setAttribute("class", "row answer incorrect");
+  randomAnswerRow.setAttribute("id", "answer incorrect");
   answersContainer.appendChild(randomAnswerRow);
   randomAnswerRow.appendChild(randomAnswer);
+
+  // const incorrectCount = document.getElementById("answerCount");
+  // const answerSelect2 = document.getElementById("incorrect");
+  // secondCount = 0;
+  // answerSelect2.onclick = function() {
+  //   count +=1;
+  //   answerCount.innerHTML = 'Incorrect answers: ' + secondCount;
+
+
+
 })
 }
+//
+// const incorrectCount = document.getElementById("answerCount");
+// const answerSelect2 = document.getElementById("incorrect");
+// const correctCount = document.getElementById("correctCount");
+// const answerSelect = document.getElementById("answer");
+
+
+
+
+
+
 // }
 // });
-
-// answers.onclick = function() {
-//   if(answers === '.correct') {
-//     count +=1;
-//     numberCorrect.innerHTML = count
-//   }
-//
-// }
