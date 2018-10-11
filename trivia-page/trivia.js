@@ -3,7 +3,7 @@ const answersContainer = document.querySelector('.answers-container');
 const spriteContainer = document.querySelector('.img1');
 const pokemonBio = document.querySelector('.pokemon-bio');
 const nextPokemonButton = document.querySelector('.next-pokemon');
-const numberCorrect = document.querySelector('.number-correct'), count = 0;
+// const numberCorrect = document.querySelector('.number-correct'), count = 0;
 const answers = document.querySelector('.answer');
 
 // let spriteImage;
@@ -127,7 +127,7 @@ let pokeBio;
         pokeBio.innerHTML = "This Pokémon resembles a pink blob with stubby arms and legs. There is a fluffy, curled tuft of fur on its head, and it has long, rabbit-like ears and large, blue eyes. A layer of tears covers its eyes, quickly washing away any debris. It is covered in pink fur with a white underbelly and ear tips. This fine layer of fur is so soft that those who touch it, including other of this Pokémon, will not want to stop. Its body is soft and rubbery, allowing it to inflate by inhaling."
     } else if(results.data.name === 'zubat'){
         pokeBio.innerHTML = "Is a blue, bat-like Pokémon. While it lacks eyes, it has pointed ears with purple insides and a mouth with two sharp teeth on each jaw. A male will have larger fangs than the female. It has purple wing membranes support by two, elongated fingers, and two long, thin, tails."
-    } else if(results.data.name === 'goldbat'){
+    } else if(results.data.name === 'golbat'){
         pokeBio.innerHTML = "Is a large, blue bat-like Pokémon with purple wing membranes. It has small eyes with slit pupils and a massive mouth containing four fangs; females have smaller fangs than males. These fangs are sharp enough to pierce thick hide, and have hollow tubes specialized for sucking blood; however, they are also fragile. While its mouth seems to be otherwise empty, this Pokémon occasionally displays a long, purple tongue. Its pointed ears are tiny, and it has short legs with long, thin feet."
     } else if(results.data.name === 'oddish'){
         pokeBio.innerHTML = "This Pokémon resembles a blue plant bulb with a round body, beady red eyes, and oval, foot-like roots. Five large, green leaves sprout from its head. As demonstrated in the anime, these leaves are prehensile and can be used to scale vertical surfaces and catch light objects."
@@ -350,6 +350,13 @@ let pokeBio;
     }
   pokemonBio.appendChild(pokeBio);
 
+  // const correctCount = document.getElementById("correctCount");
+  // const answerSelect = document.getElementById("answer");
+  // count = 0;
+  // answerSelect.onclick = function() {
+  //   count +=1;
+  //   correctCount.innerHTML = 'Correct answer: ' + count;
+
 
 });
 
@@ -366,15 +373,28 @@ axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.flo
   randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
   answersContainer.appendChild(randomAnswerRow);
   randomAnswerRow.appendChild(randomAnswer);
+
+  // const incorrectCount = document.getElementById("answerCount");
+  // const answerSelect2 = document.getElementById("incorrect");
+  // secondCount = 0;
+  // answerSelect2.onclick = function() {
+  //   count +=1;
+  //   answerCount.innerHTML = 'Incorrect answers: ' + secondCount;
+
+
+
 })
 }
+//
+// const incorrectCount = document.getElementById("answerCount");
+// const answerSelect2 = document.getElementById("incorrect");
+// const correctCount = document.getElementById("correctCount");
+// const answerSelect = document.getElementById("answer");
+
+
+
+
+
+
 // }
 // });
-
-// answers.onclick = function() {
-//   if(answers === '.correct') {
-//     count +=1;
-//     numberCorrect.innerHTML = count
-//   }
-//
-// }
