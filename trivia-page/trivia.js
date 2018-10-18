@@ -14,9 +14,10 @@ let correct=0;
 let randomAnswer;
 let pokeBio;
 
+let triviaArr = [];
 
 
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
+  triviaArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(151))}`).then(results => {
   let spriteImage = document.createElement("img");
   spriteImage.src = results.data.sprites.front_default;
   spriteContainer.appendChild(spriteImage);
@@ -365,7 +366,7 @@ let pokeBio;
     });
   })
 }
-});
+}));
 // resetButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
