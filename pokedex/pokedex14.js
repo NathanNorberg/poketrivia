@@ -4,7 +4,7 @@ const pdxEntry = document.querySelector('.pdxEntry');
 // let newDiv = document.createElement("div");
 let newDiv;
 let promiseArr = [];
-for(let i=151; i <201; i++){
+for(let i=651; i <701; i++){
   promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
 };
 
@@ -31,7 +31,7 @@ Promise.all(promiseArr).then((results)=>{
     newDiv.appendChild(newDiv2);
     newDiv2.appendChild(newImg);
     newDiv3.appendChild(newH5);
-    newDiv4.appendChild(newImg2);
+    // newDiv4.appendChild(newImg2);
     newH5.innerHTML = res.data.name;
     newImg.src = res.data.sprites.front_default;
     newImg2.src = res.data.sprites.back_default;
