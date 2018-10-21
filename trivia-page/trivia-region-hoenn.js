@@ -294,19 +294,19 @@ let triviaArr = [];
   } else if(results.data.name === 'registeel'){
       pokeBio.innerHTML = ""
   } else if(results.data.name === 'latias'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Latias is a Pokémon with a bird-like body stylized after a plane. Its neck long neck stretches forward from its squat body. It has no legs, usually floating instead. The rear half of its body is largely red and the upper half white, with jet-plane wings high on its rear and fins on the bottom near its tail. A blue triangle marks the center of its chest, while a red mask partially covers its face. Ear-like fins sit on top of its head and its eyes are yellow. It has short, three-fingered arms with a red covering on the outer side of the lower arms. Latias is a female only species, with Latios being its male counterpart."
   } else if(results.data.name === 'latios'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Latios is a Pokémon with a bird-like body stylized after a plane. Its body flows slowly into a thick neck, giving it a bulky appearance. It has no legs, usually floating instead. Most of its body is blue, with white areas near its arms and a white stripe on its back that extend up to its head. Jet-plane wings sit on top of its back, while two tall, jagged fins point behind it from its rear. A red triangle marks the center of its chest, while a red mask partially covers its face. Long, ear-like fins extend from its jaws to over its head, and its eyes are red. It has three-fingered arms with a red covering on the outer side of the lower arms. Latios is a male only species, with Latias being its female counterpart."
   } else if(results.data.name === 'kyogre'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Kyogre is a massive whale-like Pokémon with two big pectoral fins, each with four white square-shaped nails. It has a deep blue body and a white chin area with two small spikes protruding under it. Above each eye are two white, oval-shaped spots. It has red stripes around its chin, eyes, dorsal fins, and torso. These stripes glow when Kyogre is brimming with power. The tail is tattered with four trailing parts, the inner ones being smaller than the outer. Its eyes are small, yellow, and shadowed with black."
   } else if(results.data.name === `groudon`){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Groudon is a massive, bipedal, dinosaur-like creature covered in red, segmented plates of thick skin that act as armor. It has a gray underside and large white spikes that run along the sides of its head, body, and tail. It has four claws on each hand, four dozer-like blades on the end of its large tail, and three claws on each foot with gray markings under its feet. It also has blue stripes inside the seams of its armor plating which can only be seen when Groudon is glowing with power."
   } else if(results.data.name === 'rayquaza'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Rayquaza is a large, green, serpentine creature. It has red-tipped, rudder-like wings on its shoulders and down its body, and similarly patterned fins on the tip of its tail. Yellow ring-like symbols run across the length of Rayquaza's body and it has an additional yellow ring on top of its head. Rayquaza has two limbs with three-clawed hands, and two long, flat, horn-like structures on its head, with two shorter horns along its jawline. It has small, yellow eyes with black pupils, prominent pink gums, and two discernible fangs in its upper jaw."
   } else if(results.data.name === 'jirachi'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Is a small, white, humanoid Pokémon. It has short, stubby legs and comparatively longer arms. There are flaps on the underside of its arms, which give the impression of long sleeves. On its belly is a curved seam, which conceals a third eye, known as its 'true' eye. Additionally, it has a normal pair of circular eyes on its face, with small, blue triangular markings underneath. On its head is a large, yellow structure with three points extending outward: one from the top and one on either side. On each point is a blue tag, known as a 'wish tag'. A rounded extension hangs from either side of the yellow structure, framing this Pokémon's face. Two yellow streamers flow from this Pokémon's back, resembling comet tails."
   } else if(results.data.name === 'deoxys'){
-      pokeBio.innerHTML = ""
+      pokeBio.innerHTML = "Is an alien-like bipedal Pokémon that has four Formes, each focused on a different stat. The main components that are constant for all four Formes are a dominant reddish orange color, a bluish-green face, and three bluish-green dots on its back arranged in a triangle. Typically, there is a purple stripe running down the center of its face and a purple, crystalline organ in its chest. Its white, circular eyes are set inside rectangular, black eye sockets. It is shown in the anime, that this Pokémon may have a green crystalline organ and facial stripe."
   }
   pokemonBio.appendChild(pokeBio);
   for(let i=0; i < 3; i++){
