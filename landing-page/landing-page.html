@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Get ready for Go!</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="landing-page.css">
   </head>
   <body>
     <header>
@@ -29,6 +29,7 @@
           </div>
         </nav>
     </header>
+    <!-- <img class="background" src="../images/wallpaper5.jpg" alt="background"> -->
     <main class="container-fluid">
       <div class="row mt-5">
         <div class="col mt-3 d-flex justify-content-center">
@@ -37,29 +38,35 @@
       </div>
         <div class="row d-flex justify-content-center">
           <div class="col-3">
-            <p>Days remaining until Pokémon Let's Go release:</p>
+            <p><strong>Days remaining until Pokémon Let's Go release:</strong></p>
           </div>
             <div class ="col-2" id="count-down">
               <!-- DOM COUNTDOWN GOES HERE -->
             </div>
         </div>
-      <div class="row ml-5">
-        <div class="col d-flex ml-5">
-            <h2>Kanto Region</h2>
+        <div class="row">
+          <div class="col-6 ml-4">
+            <br>
+            <br>
+            <br>
+            <h4>Greetings!</h4>
+            <p>Hello there! Welcome to the web of pokémon! My name is Oak! People call me the pokémon Prof! This world is inhabited by creatures called pokémon! For some people, pokémon are pets. Others use them for fights. Myself...I study pokémon as a profession.</p>
+            <br>
+            <h4>Ready to Get Started?</h4>
+            <p>If you're ready to begin your journey through the PokéTrivia then click the button below!</p>
+            <div class="col d-flex align-items-center ">
+              <a href="../trivia-page/trivia-region-kanto.html" class="btn btn-primary">Let's Go!</a>
+            </div>
+            <br>
+            <h4>About This Project</h4>
+            <p>The creation of this site was inspired by our love for Pokémon. With over 20 years of Pokémon knowledge and experience we feel uniquely qualified to make this. We set out to create a place for pokémon players of all ages to come and test their pokémon knowledge through trivia that spans across all generations. In addition other features such as an all encompassing pokédex and region maps have been added to enahance the users' experience.</p>
+            <br>
+            <p>We really hope you enjoy what we have built! If you have any feedback, suggestions, or notice any bugs please reach out so we can improve the experience for you and overyone else.</p>
+          </div>
+          <div class="col-5 mt-3">
+            <img src="../images/professor-oak.png" alt="Professor Oak">
+          </div>
         </div>
-      </div>
-      <div class="row d-flex justify-content-center mb-4">
-          <div class="col justify-content-center mb-4">
-              <img src="https://cdn.vox-cdn.com/thumbor/wf1XPOJ3jwulwqXyi-rR0zKeiXs=/0x0:2571x1818/920x0/filters:focal(0x0:2571x1818):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/11680589/Map_Art.png" alt="Map of Kanto Region">
-
-          </div>
-          <div class="col d-flex align-items-center ">
-            <a href="../trivia-page/trivia-region-kanto.html" class="btn btn-primary">Let's Go!</a>
-          </div>
-      </div>
-
-
-
     </main>
 
     <script src="landing-page.js">
