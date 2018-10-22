@@ -20,7 +20,7 @@ let pokeBio;
 let triviaArr = [];
 
 
-  triviaArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 251}`).then(results => {
+  triviaArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 252}`).then(results => {
   let spriteImage = document.createElement("img");
   spriteImage.src = results.data.sprites.front_default;
   spriteContainer.appendChild(spriteImage);
@@ -34,7 +34,7 @@ let triviaArr = [];
   answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
   if(results.data.name === 'treecko'){
-      pokeBio.innerHTML = "Os a small, green, bipedal reptilian Pokémon. It has yellow eyes with long, narrow pupils. This Pokémon's hands and feet each have three digits covered with tiny spikes. These spikes allow it to scale vertical walls with ease. Its stomach and throat are red. It also has a line across on its stomach resembling a pouch. This Pokémon has a large, dark green tail with two separate lobes that it uses to sense humidity. This ability allows it to predict the next day's weather."
+      pokeBio.innerHTML = "Is a small, green, bipedal reptilian Pokémon. It has yellow eyes with long, narrow pupils. This Pokémon's hands and feet each have three digits covered with tiny spikes. These spikes allow it to scale vertical walls with ease. Its stomach and throat are red. It also has a line across on its stomach resembling a pouch. This Pokémon has a large, dark green tail with two separate lobes that it uses to sense humidity. This ability allows it to predict the next day's weather."
   } else if(results.data.name === 'grovyle'){
       pokeBio.innerHTML = "Is a bipedal Pokémon similar in appearance to a theropod dinosaur. It is primarily green with a red underside. There is a belt-like green stripe across its belly. This Pokémon's hands have two clawed fingers, and powerful legs with bird-like feet. Its well-developed muscles make it an expert climber and allow it to leap quickly from branch to branch. This Pokémon has three long leaves on its wrists, a large leaf on top of its head, and two tails that have a leafy appearance. This leafy appearance allows it to be camouflaged in the forests where it lives. These leaves are also used in its former signature move, Leaf Blade."
   } else if(results.data.name === 'sceptile'){
@@ -301,12 +301,12 @@ let triviaArr = [];
       pokeBio.innerHTML = "Is a large, green, serpentine creature. It has red-tipped, rudder-like wings on its shoulders and down its body, and similarly patterned fins on the tip of its tail. Yellow ring-like symbols run across the length of this Pokémon's body and it has an additional yellow ring on top of its head. This Pokémon has two limbs with three-clawed hands, and two long, flat, horn-like structures on its head, with two shorter horns along its jawline. It has small, yellow eyes with black pupils, prominent pink gums, and two discernible fangs in its upper jaw."
   } else if(results.data.name === 'jirachi'){
       pokeBio.innerHTML = "Is a small, white, humanoid Pokémon. It has short, stubby legs and comparatively longer arms. There are flaps on the underside of its arms, which give the impression of long sleeves. On its belly is a curved seam, which conceals a third eye, known as its 'true' eye. Additionally, it has a normal pair of circular eyes on its face, with small, blue triangular markings underneath. On its head is a large, yellow structure with three points extending outward: one from the top and one on either side. On each point is a blue tag, known as a 'wish tag'. A rounded extension hangs from either side of the yellow structure, framing this Pokémon's face. Two yellow streamers flow from this Pokémon's back, resembling comet tails."
-  } else if(results.data.name === 'deoxys'){
+  } else if(results.data.name === 'deoxys-normal'){
       pokeBio.innerHTML = "Is an alien-like bipedal Pokémon that has four Formes, each focused on a different stat. The main components that are constant for all four Formes are a dominant reddish orange color, a bluish-green face, and three bluish-green dots on its back arranged in a triangle. Typically, there is a purple stripe running down the center of its face and a purple, crystalline organ in its chest. Its white, circular eyes are set inside rectangular, black eye sockets. It is shown in the anime, that this Pokémon may have a green crystalline organ and facial stripe."
   }
   pokemonBio.appendChild(pokeBio);
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 251}`).then(results => {
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 252}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -634,7 +634,7 @@ nextPokemonButton.addEventListener("click", e => {
         pokeBio.innerHTML = "Is a large, green, serpentine creature. It has red-tipped, rudder-like wings on its shoulders and down its body, and similarly patterned fins on the tip of its tail. Yellow ring-like symbols run across the length of this Pokémon's body and it has an additional yellow ring on top of its head. This Pokémon has two limbs with three-clawed hands, and two long, flat, horn-like structures on its head, with two shorter horns along its jawline. It has small, yellow eyes with black pupils, prominent pink gums, and two discernible fangs in its upper jaw."
     } else if(results.data.name === 'jirachi'){
         pokeBio.innerHTML = "Is a small, white, humanoid Pokémon. It has short, stubby legs and comparatively longer arms. There are flaps on the underside of its arms, which give the impression of long sleeves. On its belly is a curved seam, which conceals a third eye, known as its 'true' eye. Additionally, it has a normal pair of circular eyes on its face, with small, blue triangular markings underneath. On its head is a large, yellow structure with three points extending outward: one from the top and one on either side. On each point is a blue tag, known as a 'wish tag'. A rounded extension hangs from either side of the yellow structure, framing this Pokémon's face. Two yellow streamers flow from this Pokémon's back, resembling comet tails."
-    } else if(results.data.name === 'deoxys'){
+    } else if(results.data.name === 'deoxys-normal'){
         pokeBio.innerHTML = "Is an alien-like bipedal Pokémon that has four Formes, each focused on a different stat. The main components that are constant for all four Formes are a dominant reddish orange color, a bluish-green face, and three bluish-green dots on its back arranged in a triangle. Typically, there is a purple stripe running down the center of its face and a purple, crystalline organ in its chest. Its white, circular eyes are set inside rectangular, black eye sockets. It is shown in the anime, that this Pokémon may have a green crystalline organ and facial stripe."
     }
     pokemonBio.appendChild(pokeBio);
