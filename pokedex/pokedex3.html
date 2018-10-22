@@ -2,14 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Pokédex</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="styles3.css">
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="../landing-page/index.html">PokeTrivia</a>
+      <a class="navbar-brand" href="../landing-page/landing-page.html">PokéTrivia</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,10 +17,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="../trivia-page/index2.html">Trivia</a>
+            <a class="nav-link" href="../trivia-page/trivia-landing-page.html">Trivia</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="../pokedex/index3.html">Pokedex</a>
+            <a class="nav-link" href="../pokedex/pokedex.html">Pokédex</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="../map-page/map.html">Map</a>
@@ -28,7 +28,19 @@
         </ul>
         </div>
       </nav>
+      <img class= "background" src="../images/wallpaper1.jpg" alt="background">
+
     <main class="container-fluid mt-5">
+      <nav aria-label="Page navigation example ">
+        <br>
+      <ul class="pagination justify-content-center mt-3">
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex.html"><<</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex2.html">#51-100</a></li>
+        <li class="page-item active"><a class="page-link" href="../pokedex/pokedex3.html">#101-150</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex4.html">#151-200</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex16.html">>></a></li>
+      </ul>
+    </nav>
       <div class="row">
         <div class="col pdxEntry mt-2">
           <!--AJAX GOES HERE  -->
@@ -36,11 +48,11 @@
       </div>
       <nav aria-label="Page navigation example ">
       <ul class="pagination justify-content-center mt-3">
-
-        <li class="page-item"><a class="page-link" href="../pokedex/index3.html">1</a></li>
-        <li class="page-item"><a class="page-link" href="../pokedex/pokedex2.html">2</a></li>
-        <li class="page-item active"><a class="page-link" href="../pokedex/pokedex3.html">3</a></li>
-
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex.html"><<</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex2.html">#51-100</a></li>
+        <li class="page-item active"><a class="page-link" href="../pokedex/pokedex3.html">#100-150</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex4.html">#151-200</a></li>
+        <li class="page-item"><a class="page-link" href="../pokedex/pokedex16.html">>></a></li>
       </ul>
     </nav>
     </main>
