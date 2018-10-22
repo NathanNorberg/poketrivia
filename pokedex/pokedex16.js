@@ -4,7 +4,7 @@ const pdxEntry = document.querySelector('.pdxEntry');
 // let newDiv = document.createElement("div");
 let newDiv;
 let promiseArr = [];
-for(let i=751; i <802; i++){
+for(let i=751; i <803; i++){
   promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
 };
 
