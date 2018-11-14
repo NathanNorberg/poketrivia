@@ -31,7 +31,6 @@ let triviaArr = [];
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
-  answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
   if(results.data.name === 'treecko'){
       pokeBio.innerHTML = "Is a small, green, bipedal reptilian Pokémon. It has yellow eyes with long, narrow pupils. This Pokémon's hands and feet each have three digits covered with tiny spikes. These spikes allow it to scale vertical walls with ease. Its stomach and throat are red. It also has a line across on its stomach resembling a pouch. This Pokémon has a large, dark green tail with two separate lobes that it uses to sense humidity. This ability allows it to predict the next day's weather."
@@ -305,8 +304,10 @@ let triviaArr = [];
       pokeBio.innerHTML = "Is an alien-like bipedal Pokémon that has four Formes, each focused on a different stat. The main components that are constant for all four Formes are a dominant reddish orange color, a bluish-green face, and three bluish-green dots on its back arranged in a triangle. Typically, there is a purple stripe running down the center of its face and a purple, crystalline organ in its chest. Its white, circular eyes are set inside rectangular, black eye sockets. It is shown in the anime, that this Pokémon may have a green crystalline organ and facial stripe."
   }
   pokemonBio.appendChild(pokeBio);
+  let btnArr = [randomAnswerRow];
+  let promiseArr = [];
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 252}`).then(results => {
+  promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 252}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -314,7 +315,7 @@ let triviaArr = [];
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
+    btnArr.push(randomAnswerRow);
     resetButton.addEventListener("click", e => {
       attempts = 0;
       correct = 0;
@@ -335,8 +336,13 @@ let triviaArr = [];
       newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
-  })
+  }));
 }
+Promise.all(promiseArr).then(()=>{
+  shuffle(btnArr)
+  console.log(btnArr);
+  btnArr.forEach(item=>answersContainer.appendChild(item));
+})
 }));
 
 nextPokemonButton.addEventListener("click", e => {
@@ -364,7 +370,6 @@ nextPokemonButton.addEventListener("click", e => {
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center correct");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
     let pokeBio = document.createElement('p');
     if(results.data.name === 'treecko'){
         pokeBio.innerHTML = "Os a small, green, bipedal reptilian Pokémon. It has yellow eyes with long, narrow pupils. This Pokémon's hands and feet each have three digits covered with tiny spikes. These spikes allow it to scale vertical walls with ease. Its stomach and throat are red. It also has a line across on its stomach resembling a pouch. This Pokémon has a large, dark green tail with two separate lobes that it uses to sense humidity. This ability allows it to predict the next day's weather."
@@ -638,16 +643,18 @@ nextPokemonButton.addEventListener("click", e => {
         pokeBio.innerHTML = "Is an alien-like bipedal Pokémon that has four Formes, each focused on a different stat. The main components that are constant for all four Formes are a dominant reddish orange color, a bluish-green face, and three bluish-green dots on its back arranged in a triangle. Typically, there is a purple stripe running down the center of its face and a purple, crystalline organ in its chest. Its white, circular eyes are set inside rectangular, black eye sockets. It is shown in the anime, that this Pokémon may have a green crystalline organ and facial stripe."
     }
     pokemonBio.appendChild(pokeBio);
+    let btnArr = [randomAnswerRow];
+    let promiseArr = [];
     for(let i=0; i < 3; i++){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 251}`).then(results => {
+    promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(135)) + 251}`).then(results => {
       let randomAnswer = document.createElement("p");
       randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
       randomAnswer.setAttribute("onclick", "event.preventDefault()");
       randomAnswer.innerHTML = "It's a " + results.data.name +"!";
       let randomAnswerRow = document.createElement("div");
       randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-      answersContainer.appendChild(randomAnswerRow);
       randomAnswerRow.appendChild(randomAnswer);
+      btnArr.push(randomAnswerRow);
       resetButton.addEventListener("click", e => {
         attempts = 0;
         correct = 0;
@@ -668,8 +675,13 @@ nextPokemonButton.addEventListener("click", e => {
         newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
         visibility.appendChild(newP);
       });
-    })
+    }));
   }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
   }));
   }
 })
@@ -677,3 +689,14 @@ nextPokemonButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
 // })
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
