@@ -30,7 +30,6 @@ let triviaArr = [];
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
-  answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
   if(results.data.name === 'victini'){
     pokeBio.innerHTML = 'Is a small, rabbit-like Pokémon with large, pointed ears which form the letter V. It has large, blue eyes and a round, cream head, which is comparatively large compared to its small, cream body, while the tops of its ears, crest, and extremities are all orange. Its bulbous arms and legs are rounded to make a sort of "cuff" before ending with small, three-fingered hands and two-toed feet. It has two pointed teeth that can be seen on its upper jaw. It also has two cream winglike tails, which allows it to fly. Though timid, it is a caring Pokémon; it will fight if its friends are in danger.';
@@ -346,8 +345,10 @@ let triviaArr = [];
       pokeBio.innerHTML = "This Pokémon is a bipedal, insectoid Pokémon with a metal body and a saucer-shaped head. It is primarily purple with several gray markings. It has two large red eyes and a small white part that could be either its mouth or a vent. It has thin arms with overlapping segments. Each arm ends with a single, pointed claw. There is a gray circle on each shoulder, and a gray band around its abdomen. Its segmented legs each end with a large, upward curving claw."
   }
   pokemonBio.appendChild(pokeBio);
+  let btnArr = [randomAnswerRow];
+  let promiseArr = [];
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(156)) + 493}`).then(results => {
+  promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(156)) + 493}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -355,7 +356,7 @@ let triviaArr = [];
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
+    btnArr.push(randomAnswerRow);
     resetButton.addEventListener("click", e => {
       attempts = 0;
       correct = 0;
@@ -376,8 +377,13 @@ let triviaArr = [];
       newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
-  })
+  }))
 }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
 }));
 
 nextPokemonButton.addEventListener("click", e => {
@@ -405,7 +411,6 @@ nextPokemonButton.addEventListener("click", e => {
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center correct");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
     let pokeBio = document.createElement('p');
     if(results.data.name === 'victini'){
       pokeBio.innerHTML = 'Is a small, rabbit-like Pokémon with large, pointed ears which form the letter V. It has large, blue eyes and a round, cream head, which is comparatively large compared to its small, cream body, while the tops of its ears, crest, and extremities are all orange. Its bulbous arms and legs are rounded to make a sort of "cuff" before ending with small, three-fingered hands and two-toed feet. It has two pointed teeth that can be seen on its upper jaw. It also has two cream winglike tails, which allows it to fly. Though timid, it is a caring Pokémon; it will fight if its friends are in danger.';
@@ -721,16 +726,18 @@ nextPokemonButton.addEventListener("click", e => {
         pokeBio.innerHTML = "This Pokémon is a bipedal, insectoid Pokémon with a metal body and a saucer-shaped head. It is primarily purple with several gray markings. It has two large red eyes and a small white part that could be either its mouth or a vent. It has thin arms with overlapping segments. Each arm ends with a single, pointed claw. There is a gray circle on each shoulder, and a gray band around its abdomen. Its segmented legs each end with a large, upward curving claw."
     }
       pokemonBio.appendChild(pokeBio);
+      let btnArr = [randomAnswerRow];
+      let promiseArr = [];
     for(let i=0; i < 3; i++){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(156)) + 493}`).then(results => {
+    promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(156)) + 493}`).then(results => {
       let randomAnswer = document.createElement("p");
       randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
       randomAnswer.setAttribute("onclick", "event.preventDefault()");
       randomAnswer.innerHTML = "It's a " + results.data.name +"!";
       let randomAnswerRow = document.createElement("div");
       randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-      answersContainer.appendChild(randomAnswerRow);
       randomAnswerRow.appendChild(randomAnswer);
+      btnArr.push(randomAnswerRow);
       resetButton.addEventListener("click", e => {
         attempts = 0;
         correct = 0;
@@ -751,8 +758,13 @@ nextPokemonButton.addEventListener("click", e => {
         newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
         visibility.appendChild(newP);
       });
-    })
+    }))
   }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
   }));
   }
 })
@@ -760,3 +772,14 @@ nextPokemonButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
 // })
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}

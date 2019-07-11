@@ -30,7 +30,6 @@ let triviaArr = [];
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
-  answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
     if(results.data.name === 'turtwig'){
       pokeBio.innerHTML = 'Is a small, light green, quadruped Pokémon resembling a turtle or tortoise. Its eyes, feet, and lower jaw are yellow. Its body is covered by a brown shell that is composed of earth. The shell has a thick black stripe and a black rim. On a very healthy of this Pokémon, the shell should feel moist. A small seedling grows on a brown patch on its head. This seedling will wilt if the Pokémon becomes thirsty. As a plant-based Pokémon, this Pokémon usually nourishes itself through photosynthesis. It also drinks water, which hardens its soil-based shell. Due to its status as a starter Pokémon, a wild version Pokémon is hard to come by and it is generally found under the ownership of Trainers.';
@@ -248,8 +247,10 @@ let triviaArr = [];
         pokeBio.innerHTML = "Is a white equine resembling a qilin or centaur with a gray, vertically-striated underside. The striated pattern has similar recurrences on the underside of its mane, tail, and face. Its four pointed feet are tipped with gold hooves. Its long mane juts away from its head, and its face is gray, with green eyes and red pupils, and a green circular pattern below its eyes. This Pokémon also has a streak of gold coloration on its head, and ears that point upward. Its neck is fairly long, with two pairs of extrusions to the sides, and a flap-like feature on the neck's underside that is colored white like much of the body. This Pokémon also has a golden cross-like wheel attached to its body by its round abdomen, which changes color along with its eyes and hooves based on its current type, which depends on the plate or type-specific Z-Crystal that it wields. The wheel also has four jewels attached to it. The pattern of striated gray of this Pokémon's underbelly resumes past this Pokémon's waist. Its limbs have gray undersides and extrusions at the tops of the legs. This Pokémon's tail is fairly like its mane in terms of shape and coloration. According to legend, it shaped the Pokémon universe using its 1000 arms."
       }
   pokemonBio.appendChild(pokeBio);
+  let btnArr = [randomAnswerRow];
+  let promiseArr = [];
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(107)) + 386}`).then(results => {
+  promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(107)) + 386}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -257,7 +258,7 @@ let triviaArr = [];
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
+    btnArr.push(randomAnswerRow);
     resetButton.addEventListener("click", e => {
       attempts = 0;
       correct = 0;
@@ -278,8 +279,13 @@ let triviaArr = [];
       newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
-  })
+  }))
 }
+Promise.all(promiseArr).then(()=>{
+  shuffle(btnArr)
+  console.log(btnArr);
+  btnArr.forEach(item=>answersContainer.appendChild(item));
+})
 }));
 
 nextPokemonButton.addEventListener("click", e => {
@@ -307,7 +313,6 @@ nextPokemonButton.addEventListener("click", e => {
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center correct");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
     let pokeBio = document.createElement('p');
     if(results.data.name === 'turtwig'){
       pokeBio.innerHTML = 'Is a small, light green, quadruped Pokémon resembling a turtle or tortoise. Its eyes, feet, and lower jaw are yellow. Its body is covered by a brown shell that is composed of earth. The shell has a thick black stripe and a black rim. On a very healthy of this Pokémon, the shell should feel moist. A small seedling grows on a brown patch on its head. This seedling will wilt if the Pokémon becomes thirsty. As a plant-based Pokémon, this Pokémon usually nourishes itself through photosynthesis. It also drinks water, which hardens its soil-based shell. Due to its status as a starter Pokémon, a wild version Pokémon is hard to come by and it is generally found under the ownership of Trainers.';
@@ -525,16 +530,18 @@ nextPokemonButton.addEventListener("click", e => {
         pokeBio.innerHTML = "Is a white equine resembling a qilin or centaur with a gray, vertically-striated underside. The striated pattern has similar recurrences on the underside of its mane, tail, and face. Its four pointed feet are tipped with gold hooves. Its long mane juts away from its head, and its face is gray, with green eyes and red pupils, and a green circular pattern below its eyes. This Pokémon also has a streak of gold coloration on its head, and ears that point upward. Its neck is fairly long, with two pairs of extrusions to the sides, and a flap-like feature on the neck's underside that is colored white like much of the body. This Pokémon also has a golden cross-like wheel attached to its body by its round abdomen, which changes color along with its eyes and hooves based on its current type, which depends on the plate or type-specific Z-Crystal that it wields. The wheel also has four jewels attached to it. The pattern of striated gray of this Pokémon's underbelly resumes past this Pokémon's waist. Its limbs have gray undersides and extrusions at the tops of the legs. This Pokémon's tail is fairly like its mane in terms of shape and coloration. According to legend, it shaped the Pokémon universe using its 1000 arms."
       }
     pokemonBio.appendChild(pokeBio);
+    let btnArr = [randomAnswerRow];
+    let promiseArr = [];
     for(let i=0; i < 3; i++){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(107)) + 386}`).then(results => {
+    promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(107)) + 386}`).then(results => {
       let randomAnswer = document.createElement("p");
       randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
       randomAnswer.setAttribute("onclick", "event.preventDefault()");
       randomAnswer.innerHTML = "It's a " + results.data.name +"!";
       let randomAnswerRow = document.createElement("div");
       randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-      answersContainer.appendChild(randomAnswerRow);
       randomAnswerRow.appendChild(randomAnswer);
+      btnArr.push(randomAnswerRow);
       resetButton.addEventListener("click", e => {
         attempts = 0;
         correct = 0;
@@ -555,8 +562,13 @@ nextPokemonButton.addEventListener("click", e => {
         newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
         visibility.appendChild(newP);
       });
-    })
+    }))
   }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
   }));
   }
 })
@@ -564,3 +576,13 @@ nextPokemonButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
 // })
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}

@@ -31,7 +31,6 @@ let triviaArr = [];
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
-  answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
     if(results.data.name === 'bulbasaur'){
       pokeBio.innerHTML = 'Is a small, quadruped Pokémon that has blue-green skin with darker green patches. It has red eyes with white pupils and scleras. It also has pointed, ear-like structures on top of its head. Its snout is short and blunt, and it has a wide mouth. A pair of small, pointed teeth are visible in the upper jaw when its mouth is open. Each of its thick legs ends with three sharp claws. On its back is a green plant bulb, which is grown from a seed planted there at birth. The bulb provides it with energy through photosynthesis as well as from the nutrient-rich seeds contained within.';
@@ -1650,8 +1649,10 @@ let triviaArr = [];
                     }
 
   pokemonBio.appendChild(pokeBio);
+  let btnArr = [randomAnswerRow];
+  let promiseArr = [];
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(802))}`).then(results => {
+  promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(802))}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -1659,7 +1660,7 @@ let triviaArr = [];
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
+    btnArr.push(randomAnswerRow);
     resetButton.addEventListener("click", e => {
       attempts = 0;
       correct = 0;
@@ -1680,8 +1681,13 @@ let triviaArr = [];
       newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
-  })
+  }));
 }
+Promise.all(promiseArr).then(()=>{
+  shuffle(btnArr)
+  console.log(btnArr);
+  btnArr.forEach(item=>answersContainer.appendChild(item));
+})
 }));
 
 nextPokemonButton.addEventListener("click", e => {
@@ -1709,7 +1715,6 @@ nextPokemonButton.addEventListener("click", e => {
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center correct");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
     let pokeBio = document.createElement('p');
       if(results.data.name === 'bulbasaur'){
       pokeBio.innerHTML = 'Is a small, quadruped Pokémon that has blue-green skin with darker green patches. It has red eyes with white pupils and scleras. It also has pointed, ear-like structures on top of its head. Its snout is short and blunt, and it has a wide mouth. A pair of small, pointed teeth are visible in the upper jaw when its mouth is open. Each of its thick legs ends with three sharp claws. On its back is a green plant bulb, which is grown from a seed planted there at birth. The bulb provides it with energy through photosynthesis as well as from the nutrient-rich seeds contained within.';
@@ -3327,16 +3332,18 @@ nextPokemonButton.addEventListener("click", e => {
                         pokeBio.innerHTML = "This Pokémon is a bipedal feline Pokémon that has black underfur and yellow fur on its head, forearms, chest, hips, and upper legs. Blue fur can also be seen on its forehead, chest, and whiskers. Its eyes and paw-pads are similarly blue. Black zigzagging stripes can be seen on its thighs and forearms. It has four-fingered paws, while its feet have three toes each. A long, yellow, thunderbolt-shaped ponytail-esque strand which extends from the back of its head, giving the appearance of an actual tail."
                     }
     pokemonBio.appendChild(pokeBio);
+    let btnArr = [randomAnswerRow];
+    let promiseArr = [];
     for(let i=0; i < 3; i++){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(802))}`).then(results => {
+    promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(802))}`).then(results => {
       let randomAnswer = document.createElement("p");
       randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
       randomAnswer.setAttribute("onclick", "event.preventDefault()");
       randomAnswer.innerHTML = "It's a " + results.data.name +"!";
       let randomAnswerRow = document.createElement("div");
       randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-      answersContainer.appendChild(randomAnswerRow);
       randomAnswerRow.appendChild(randomAnswer);
+      btnArr.push(randomAnswerRow);
       resetButton.addEventListener("click", e => {
         attempts = 0;
         correct = 0;
@@ -3357,8 +3364,13 @@ nextPokemonButton.addEventListener("click", e => {
         newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
         visibility.appendChild(newP);
       });
-    })
+    }));
   }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
   }));
   }
 })
@@ -3366,3 +3378,14 @@ nextPokemonButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
 // })
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}

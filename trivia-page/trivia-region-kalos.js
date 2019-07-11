@@ -30,7 +30,6 @@ let triviaArr = [];
   let randomAnswerRow = document.createElement("div");
   randomAnswerRow.setAttribute("class", "row justify-content-center correct");
   randomAnswerRow.appendChild(randomAnswer);
-  answersContainer.appendChild(randomAnswerRow);
   let pokeBio = document.createElement('p');
   if(results.data.name === 'chespin'){
     pokeBio.innerHTML = 'Is a bipedal, mammalian Pokémon. It has a light-brown front with dark brown arms and three triangular-shaped markings on its face. There is a tough, green shell covering its back, which extends from its head to halfway down its tail. There is a small, off-center hole in the shell on the back of Chespins head. The shell can protect this Pokémon from powerful attacks. Around the face, the shell has four leaf-like spikes, and one split into three parts on the back of its head. These quills are typically soft, but this Pokémon can stiffen them and use them for attack as well. Chespins oval eyes are brown, and it has a triangular red nose and rodent-like incisors. Its arms have three fingers, while its feet have two long claws.';
@@ -178,8 +177,10 @@ let triviaArr = [];
       pokeBio.innerHTML = "Is a primarily maroon, quadruped Pokémon with blue and yellow markings. It has large, pointed ears with blue insides and bright blue eyes. Additionally, it has bushy yellow eyebrows and a yellow mandible. There are spike-protrusions on each cheek that extend downward over its lower jaw. This's body has two oval segments separated by a thinner, blue portion. The front portion the body is larger and has two large, arm-like cannons on the back. These cannons are usually held together, forming a ring. Each cannon is separated into three segments by bright blue lines, and each segment has a single blue dot and short, blunt growth. "
   }
   pokemonBio.appendChild(pokeBio);
+  let btnArr = [randomAnswerRow];
+  let promiseArr = [];
   for(let i=0; i < 3; i++){
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(72)) + 649}`).then(results => {
+  promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(72)) + 649}`).then(results => {
     let randomAnswer = document.createElement("p");
     randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
     randomAnswer.setAttribute("onclick", "event.preventDefault()");
@@ -187,7 +188,7 @@ let triviaArr = [];
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
+    btnArr.push(randomAnswerRow);
     resetButton.addEventListener("click", e => {
       attempts = 0;
       correct = 0;
@@ -208,8 +209,13 @@ let triviaArr = [];
       newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
       visibility.appendChild(newP);
     });
-  })
+  }))
 }
+Promise.all(promiseArr).then(()=>{
+  shuffle(btnArr)
+  console.log(btnArr);
+  btnArr.forEach(item=>answersContainer.appendChild(item));
+})
 }));
 
 nextPokemonButton.addEventListener("click", e => {
@@ -237,7 +243,6 @@ nextPokemonButton.addEventListener("click", e => {
     let randomAnswerRow = document.createElement("div");
     randomAnswerRow.setAttribute("class", "row justify-content-center correct");
     randomAnswerRow.appendChild(randomAnswer);
-    answersContainer.appendChild(randomAnswerRow);
     let pokeBio = document.createElement('p');
     if(results.data.name === 'chespin'){
       pokeBio.innerHTML = 'Is a bipedal, mammalian Pokémon. It has a light-brown front with dark brown arms and three triangular-shaped markings on its face. There is a tough, green shell covering its back, which extends from its head to halfway down its tail. There is a small, off-center hole in the shell on the back of Chespins head. The shell can protect this Pokémon from powerful attacks. Around the face, the shell has four leaf-like spikes, and one split into three parts on the back of its head. These quills are typically soft, but this Pokémon can stiffen them and use them for attack as well. Chespins oval eyes are brown, and it has a triangular red nose and rodent-like incisors. Its arms have three fingers, while its feet have two long claws.';
@@ -385,16 +390,18 @@ nextPokemonButton.addEventListener("click", e => {
         pokeBio.innerHTML = "Is a primarily maroon, quadruped Pokémon with blue and yellow markings. It has large, pointed ears with blue insides and bright blue eyes. Additionally, it has bushy yellow eyebrows and a yellow mandible. There are spike-protrusions on each cheek that extend downward over its lower jaw. This's body has two oval segments separated by a thinner, blue portion. The front portion the body is larger and has two large, arm-like cannons on the back. These cannons are usually held together, forming a ring. Each cannon is separated into three segments by bright blue lines, and each segment has a single blue dot and short, blunt growth. "
     }
     pokemonBio.appendChild(pokeBio);
+    let btnArr = [randomAnswerRow];
+    let promiseArr = [];
     for(let i=0; i < 3; i++){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(72)) + 649}`).then(results => {
+    promiseArr.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random()*Math.floor(72)) + 649}`).then(results => {
       let randomAnswer = document.createElement("p");
       randomAnswer.setAttribute("class", "answer incorrect btn btn-secondary");
       randomAnswer.setAttribute("onclick", "event.preventDefault()");
       randomAnswer.innerHTML = "It's a " + results.data.name +"!";
       let randomAnswerRow = document.createElement("div");
       randomAnswerRow.setAttribute("class", "row justify-content-center incorrect");
-      answersContainer.appendChild(randomAnswerRow);
       randomAnswerRow.appendChild(randomAnswer);
+      btnArr.push(randomAnswerRow);
       resetButton.addEventListener("click", e => {
         attempts = 0;
         correct = 0;
@@ -415,8 +422,13 @@ nextPokemonButton.addEventListener("click", e => {
         newP.innerHTML = `Your accuracy is ${(percentage).toFixed(2)*100}% `
         visibility.appendChild(newP);
       });
-    })
+    }))
   }
+  Promise.all(promiseArr).then(()=>{
+    shuffle(btnArr)
+    console.log(btnArr);
+    btnArr.forEach(item=>answersContainer.appendChild(item));
+  })
   }));
   }
 })
@@ -424,3 +436,14 @@ nextPokemonButton.addEventListener("click", e => {
 //   attempts = 0;
 //   correct = 0;
 // })
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
